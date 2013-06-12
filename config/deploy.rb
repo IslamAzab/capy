@@ -5,17 +5,17 @@ set :repository,  "git@github.com:IslamAzab/capy.git"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-set :user, "deployer"
 
 set :ssh_options, { :forward_agent => true }
-set :user, "root"
+set :user, "badrit"
+set :branch, "master"
 
-set :deploy_to, "/boot/www/capy"
+set :deploy_to, "/var/www/capy"
 
 # server "application", :app, :web, :db, :primary => true
-role :web, "192.168.1.190"                          # Your HTTP server, Apache/etc
-role :app, "192.168.1.190"                          # This may be the same as your `Web` server
-role :db,  "192.168.1.190", :primary => true # This is where Rails migrations will run
+role :web, "localhost"                          # Your HTTP server, Apache/etc
+role :app, "localhost"                          # This may be the same as your `Web` server
+role :db,  "localhost", :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
