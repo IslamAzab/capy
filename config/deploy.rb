@@ -33,3 +33,6 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+
+require "rvm/capistrano"
+set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
