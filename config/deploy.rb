@@ -7,11 +7,11 @@ set :scm, :git # You can set :scm explicitly or Capistrano will make an intellig
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :ssh_options, { :forward_agent => true }
-set :user, "badrit"
 set :branch, "master"
-
+set :deploy_via, :remote_cache
 set :deploy_to, "/var/www/capy"
 
+set :user, "badrit"
 # server "application", :app, :web, :db, :primary => true
 role :web, "localhost"                          # Your HTTP server, Apache/etc
 role :app, "localhost"                          # This may be the same as your `Web` server
@@ -32,3 +32,14 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+require 'capistrano/ext/multistage'
+require 'bundler/capistrano'
+ 
+namespace :rvm do
+  desc 'Trust rvmrc file'
+  task :trust_rvmrc do
+    run "rvm rvmrc trust #{current_release}"
+  end
+end
+ 
+after "deploy:update_code", "rvm:trust_rvmrc"
