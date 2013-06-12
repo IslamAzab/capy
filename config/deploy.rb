@@ -36,3 +36,5 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 
 require "rvm/capistrano"
 set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
+
+require "lib/tasks/capistrano_database"
