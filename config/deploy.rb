@@ -10,7 +10,7 @@ set :user, "deployer"
 set :ssh_options, { :forward_agent => true }
 set :user, "root"
 
-set :deploy_to, "/var/www/capy"
+set :deploy_to, "/boot/www/capy"
 
 # server "application", :app, :web, :db, :primary => true
 role :web, "192.168.1.190"                          # Your HTTP server, Apache/etc
