@@ -32,14 +32,11 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-require 'capistrano/ext/multistage'
-require 'bundler/capistrano'
- 
+
 namespace :rvm do
-  desc 'Trust rvmrc file'
   task :trust_rvmrc do
-    run "rvm rvmrc trust #{current_release}"
+    run "rvm rvmrc trust #{release_path}"
   end
 end
- 
-after "deploy:update_code", "rvm:trust_rvmrc"
+
+after "deploy", "rvm:trust_rvmrc"
