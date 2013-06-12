@@ -35,7 +35,7 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 
 namespace :rvm do
   task :trust_rvmrc do
-    run "rvm rvmrc trust #{release_path}"
+    run "sudo rvm rvmrc trust #{release_path}"
   end
 end
 
