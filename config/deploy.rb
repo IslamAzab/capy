@@ -1,15 +1,21 @@
+default_run_options[:pty] = true  # Must be set for the password prompt
+                                  # from git to work
 set :application, "capy"
 set :repository,  "git@github.com:IslamAzab/capy.git"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :user, "deployer"
 
-set :deploy_to, "/u/capy_deploy"
+set :ssh_options, { :forward_agent => true }
+set :user, "root"
 
-server "0.0.0.0", :app, :web, :db, :primary => true
-# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-# role :app, "your app-server here"                          # This may be the same as your `Web` server
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
+set :deploy_to, "/var/www/capy"
+
+# server "application", :app, :web, :db, :primary => true
+role :web, "192.168.1.190"                          # Your HTTP server, Apache/etc
+role :app, "192.168.1.190"                          # This may be the same as your `Web` server
+role :db,  "192.168.1.190", :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:

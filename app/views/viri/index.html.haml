@@ -1,0 +1,19 @@
+%h1 Listing viri
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @viri.each do |virus|
+    %tr
+      %td= virus.name
+      %td= link_to 'Show', virus
+      %td= link_to 'Edit', edit_virus_path(virus)
+      %td= link_to 'Destroy', virus, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Virus', new_virus_path
