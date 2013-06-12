@@ -9,6 +9,7 @@ set :scm, :git # You can set :scm explicitly or Capistrano will make an intellig
 set :ssh_options, { :forward_agent => true }
 set :branch, "master"
 set :deploy_via, :remote_cache
+
 set :deploy_to, "/var/www/capy"
 
 set :user, "badrit"
@@ -32,11 +33,3 @@ role :db,  "localhost", :primary => true # This is where Rails migrations will r
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-
-namespace :rvm do
-  task :trust_rvmrc do
-    run "sudo -p 'sudo password: '  rvm rvmrc trust #{release_path}"
-  end
-end
-
-after "deploy:update", "rvm:trust_rvmrc"
