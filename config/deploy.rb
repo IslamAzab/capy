@@ -39,5 +39,4 @@ namespace :rvm do
   end
 end
 
-after "deploy", "rvm:trust_rvmrc"
-before "deploy:migrate", "rvm:trust_rvmrc"
+after "deploy:update", "rvm:trust_rvmrc"
